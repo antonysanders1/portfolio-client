@@ -47,7 +47,9 @@ class Login extends React.Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     this.props.loginUser(this.state, () => {
+      if(this.props.user.name){
         this.props.history.push("/home");
+      }
     });
 
     this.setState({
@@ -128,9 +130,13 @@ class Login extends React.Component {
   }
 }
 
+const mapState = ({user}) => {
+  return {user}
+}
+
 export default compose(
   withStyles(styles, {
       name: 'App',
   }),
-  connect(null, {loginUser}),
+  connect(mapState, {loginUser}),
 )(Login);
