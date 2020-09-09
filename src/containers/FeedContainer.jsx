@@ -8,8 +8,6 @@ import {Grid} from '@material-ui/core';
 
 import DashBoard from '../components/Dashboard'
 import Feed from '../components/Feed'
-import About from '../components/About'
-//import Copyright from './Copyright'
 
 
 const styles = (theme) => ({
@@ -45,7 +43,7 @@ const styles = (theme) => ({
 }
 });
 
-class UserContainer extends React.Component {
+class FeedContainer extends React.Component {
     componentDidMount() {
         console.log(this.props)
     }
@@ -65,8 +63,6 @@ class UserContainer extends React.Component {
                 </Grid>
                 <Grid container item direction="row"xs={12} sm={6} md={8} lg={9} xl={9}>
                   <Feed/>
-                  <br/>
-                  <About/>
                 </Grid>
             </Grid>
             
@@ -83,4 +79,4 @@ export default compose(
       name: 'App',
   }),
   connect(mapState),
-)(UserContainer);
+)(FeedContainer);
