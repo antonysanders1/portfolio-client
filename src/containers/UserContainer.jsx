@@ -7,7 +7,8 @@ import {Grid} from '@material-ui/core';
 //import {getUser, logoutUser} from '../actions/actions';
 
 import DashBoard from '../components/Dashboard'
-//import Feed from '../components/Feed'
+import Feed from '../components/Feed'
+import About from '../components/About'
 //import Copyright from './Copyright'
 
 
@@ -63,17 +64,12 @@ class UserContainer extends React.Component {
                   </Grid>
                 </Grid>
                 <Grid container item direction="row"xs={12} sm={6} md={8} lg={9} xl={9}>
-                
+                  <Feed/>
+                  <br/>
+                  <About/>
                 </Grid>
             </Grid>
-            // <div>
-            //     <DashBoard 
-            //     userName={this.props.user.name} 
-            //     logOut={this.props.logoutUser} 
-            //     savedJobs={this.props.user.savedJobs}
-            //     user={this.props.user}
-            //     />
-            // </div>
+            
         )
     }
 }
