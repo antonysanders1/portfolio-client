@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {getUser} from './actions/actions';
 
 
-class App extends React.Component {
+class App extends React.PureComponent {
 
   componentDidMount(){
     this.props.getUser()
