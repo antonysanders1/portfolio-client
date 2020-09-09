@@ -8,7 +8,8 @@ import {connect} from 'react-redux';
 import Home from './components/Home';
 import About from './components/About';
 import Login from './components/Login';
-import UserContainer from './containers/UserContainer';
+import FeedContainer from './containers/FeedContainer';
+import ProfileContainer from './containers/ProfileContainer';
 
 import {logoutUser} from './actions/actions'
 
@@ -63,29 +64,30 @@ class NavBar extends React.PureComponent {
 
                             <Grid item xs={2} sm={2} md={2} lg={1}> 
                                 {
-                                  this.props.user.name ? null :
+                                  this.props.user.name ? <Button fullWidth color='primary' component={Link} to="/home">Home</Button> :
                                   <Button fullWidth color='primary' component={Link} to="/">Home</Button>
                                 } 
                             </Grid>
 
                             <Grid item xs={2} sm={2} md={2} lg={1}>
                                 {
-                                  this.props.user.name ? null :
+                                  this.props.user.name ? <Button fullWidth color='primary' component={Link} to="/profile">Profile</Button> :
                                   <Button fullWidth color='primary' component={Link} to="/about">About</Button>
                                 }
                             </Grid>
 
                             <Grid item xs={2} sm={2} md={2} lg={1}>
                                 {
-                                this.props.user.name ? <Button fullWidth color='primary' component={Link} to="/" onClick={this.handleClick}>Logout</Button> : 
-                                <Button fullWidth color='primary' component={Link} to="/login">Login</Button>
+                                this.props.user.name ? <Button fullWidth color='primary' variant="contained" component={Link} to="/" onClick={this.handleClick}>Logout</Button> : 
+                                <Button fullWidth color='primary' variant="contained" component={Link} to="/login">Login</Button>
                                 } 
                             </Grid>       
                         </Grid>
                         <Divider/>
                     </Grid>
                     <Switch>
-                        <Route path="/home" exact component={UserContainer} />
+                        <Route path="/home" exact component={FeedContainer} />
+                        <Route path="/profile" exact component={ProfileContainer} />
                         <Route path="/login" exact component={Login} />
                         <Route path="/about" exact component={About} />
                         <Route path="/" exact component={Home} />
