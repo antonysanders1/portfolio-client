@@ -41,7 +41,7 @@ export const getUser = () => {
 
 
 //----------------------------------------------------------LOGOUT_USER
-export const logoutUser = (callback) => {
+export const logoutUser = () => {
     return dispatch => {
      return fetch(`http://localhost:3000/logout`, {
         method: "DELETE",
@@ -52,7 +52,7 @@ export const logoutUser = (callback) => {
         })
          .then(data => {
              dispatch({ type: "LOGOUT_USER" })
-             callback()
+             
          }
         )
     }
