@@ -2,6 +2,7 @@ import React from 'react'
 //import { useHistory } from "react-router-dom";
 import {Avatar, Button, Grid, Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import Copyright from './Copyright';
 
 const useStyles = makeStyles((theme) => ({
     main: {
@@ -20,9 +21,13 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: '20px',
     },
     bottomBtn: {
+        width: '100%',
         position: 'absolute',
         bottom: '10px',
         left: '0',
+        right: '0',
+        marginLeft: 'auto',
+        marginRight: 'auto'
       },
   }));
 
@@ -50,12 +55,14 @@ const DashBoard = (props) => {
             </Grid>
 
             <Grid container item>
-                <Button fullWidth variant="contained" className={classes.item}>Home</Button>
-                <Button fullWidth variant="contained" className={classes.item}>Profile</Button>
+                <Button fullWidth variant="contained" className={classes.item}>Post New Work</Button>
+                <Button fullWidth variant="contained" className={classes.item}>Account</Button>
             </Grid>
 
             <Grid container item className={classes.bottomBtn}>
                 <Button fullWidth variant="contained" className={classes.item}>About</Button>
+                <br/>
+                <Copyright/>
             </Grid>
 
         </Grid>
