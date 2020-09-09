@@ -10,6 +10,8 @@ import About from './components/About';
 import Login from './components/Login';
 import UserContainer from './containers/UserContainer';
 
+import {logoutUser} from './actions/actions'
+
 const styles = () => ({
     navLogo: {
       color: 'black',
@@ -26,7 +28,18 @@ const styles = () => ({
   });
 
 
-class NavBar extends React.Component {
+class NavBar extends React.PureComponent {
+    
+    constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  handleClick = () => {
+   this.props.logoutUser();
+   console.log(this.props)
+  }
+
     componentDidMount() {
         console.log(this.props)
     }
@@ -50,21 +63,21 @@ class NavBar extends React.Component {
 
                             <Grid item xs={2} sm={2} md={2} lg={1}> 
                                 {
-                                  this.props.user.length > 0 ? null :
+                                  this.props.user.name ? null :
                                   <Button fullWidth color='primary' component={Link} to="/">Home</Button>
                                 } 
                             </Grid>
 
                             <Grid item xs={2} sm={2} md={2} lg={1}>
                                 {
-                                  this.props.user.length > 0 ? null :
+                                  this.props.user.name ? null :
                                   <Button fullWidth color='primary' component={Link} to="/about">About</Button>
                                 }
                             </Grid>
 
                             <Grid item xs={2} sm={2} md={2} lg={1}>
                                 {
-                                this.props.user.length > 0 ? <Button fullWidth color='primary' component={Link} to="/">Logout</Button> : 
+                                this.props.user.name ? <Button fullWidth color='primary' component={Link} to="/" onClick={this.handleClick}>Logout</Button> : 
                                 <Button fullWidth color='primary' component={Link} to="/login">Login</Button>
                                 } 
                             </Grid>       
@@ -91,4 +104,4 @@ const mapState = ({user}) => {
 
 export default compose(
   withStyles(styles, {name: 'App',}),
-  connect(mapState))(NavBar);
+  connect(mapState, {logoutUser}))(NavBar);
