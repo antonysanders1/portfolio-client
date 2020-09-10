@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {compose} from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
-import {Grid} from '@material-ui/core';
+import {Grid, CssBaseline} from '@material-ui/core';
 
 //import {getUser, logoutUser} from '../actions/actions';
 
@@ -17,8 +17,8 @@ const styles = (theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  section: {
-      background: "red",
+  section1: {
+      background: "#e8e8e8",
       height: '90vh',
       paddingTop: theme.spacing(3),
       paddingLeft: theme.spacing(3),
@@ -26,6 +26,11 @@ const styles = (theme) => ({
       paddingBottom: theme.spacing(1),
       border: 'solid, black, 1px'
   },
+  section2: {
+    height: '90vh',
+    overflow: 'hidden',
+    overflowY: 'scroll',
+},
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -40,7 +45,31 @@ const styles = (theme) => ({
   profile: {
     height: "20%",
     background: "blue"
-}
+  },
+  container: {
+    width: '100%',
+    padding: theme.spacing(2),
+    
+  },
+  workContainer: {
+    height: '60vh',
+    padding: theme.spacing(1),
+    marginBottom: '30px',
+    // overflow: 'hidden',
+    flexGrow: 1,
+  },
+  imgContainer: {
+    height: '50%',
+    width: '100%',
+    display: 'inline-block',
+    textAlign: 'center',
+    backgroundColor: '#e8e8e8'
+  },
+  img: {
+    height: '100%',
+    width: '100%',
+    objectFit: 'contain'
+  },
 });
 
 class ProfileContainer extends React.Component {
@@ -52,8 +81,8 @@ class ProfileContainer extends React.Component {
         const {classes} = this.props;
         return(
             <Grid container>
-
-                <Grid container item className={classes.section} direction="row" xs={12} sm={6} md={4} lg={3} xl={3}>
+                <CssBaseline />
+                <Grid container item className={classes.section1} direction="row" xs={false} sm={6} md={4} lg={3} xl={3}>
                   <Grid container item direction="column">
                     <DashBoard 
                       classes ={classes}
@@ -61,8 +90,12 @@ class ProfileContainer extends React.Component {
                     />
                   </Grid>
                 </Grid>
-                <Grid container item direction="row"xs={12} sm={6} md={8} lg={9} xl={9}>
-                  <Profile/>
+                <Grid container item className={classes.section2} direction="row"xs={12} sm={6} md={8} lg={9} xl={9}>
+                  <Profile
+                  classes ={classes}
+                   user={this.props.user}
+                   works={this.props.user.works}
+                   />
                 </Grid>
             </Grid>
             
