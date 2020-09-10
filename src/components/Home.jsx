@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography} from '@material-ui/core';
+import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Box, Grid, Typography} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -7,7 +7,7 @@ import Copyright from './Copyright'
 
 const styles = (theme) => ({
   root: {
-    height: '93vh',
+    height: '90vh',
   },
   image: {
     backgroundImage: 'url(https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/blogs/4172/images/S1RZzLIaTBuEx0LcJt9g_PYRAMID-SCENE3-RETOUCH-1400_1250_preview.png)',
@@ -18,7 +18,7 @@ const styles = (theme) => ({
     backgroundPosition: 'center',
   },
   paper: {
-    margin: theme.spacing(8, 4),
+    margin: theme.spacing(0, 4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -29,10 +29,9 @@ const styles = (theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(0, 0, 2),
   },
 });
 
@@ -46,7 +45,7 @@ class Home extends React.Component {
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={5} square>
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
@@ -126,7 +125,7 @@ class Home extends React.Component {
                   </Link>
                 </Grid>
               </Grid>
-              <Box mt={5}>
+              <Box mt={3}>
                 <Copyright/>
               </Box>
             </form>
