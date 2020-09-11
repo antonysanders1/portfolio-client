@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {compose} from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
-import {Grid, CssBaseline} from '@material-ui/core';
+import {Grid, CssBaseline, Typography} from '@material-ui/core';
 
 //import {getUser, logoutUser} from '../actions/actions';
 
@@ -30,7 +30,12 @@ const styles = (theme) => ({
     height: '90vh',
     overflow: 'hidden',
     overflowY: 'scroll',
-},
+  },
+  pgTitle: {
+    marginTop:'20px',
+    marginBottom: '20px',
+    fontWeight: 'bold'
+  },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -91,6 +96,9 @@ class ProfileContainer extends React.Component {
                   </Grid>
                 </Grid>
                 <Grid container item className={classes.section2} direction="row"xs={12} sm={6} md={8} lg={9} xl={9}>
+                  <Grid container item xs={12} alignItems="center" justify="center" className={classes.pgTitle} >
+                    <Typography variant='h4'>PROFILE</Typography>
+                  </Grid>
                   <Profile
                   classes ={classes}
                    user={this.props.user}
