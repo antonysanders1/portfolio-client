@@ -90,3 +90,24 @@ export const logoutUser = () => {
 //             .catch(console.log())
 //     };
 // };
+
+
+//----------------------------------------------GET_USER_WORKS
+export const getWorks = () => { 
+    return dispatch => {   
+        return fetch("http://localhost:3000/works", {  
+            credentials: "include",         
+            headers: {            
+                "Content-Type": "application/json"          
+                }
+            })        
+            .then(res => res.json())        
+            .then(workData => {          
+                if (workData.error) {            
+                    alert(workData.error)          
+                } else {            
+                     dispatch({type: "SHOW_WORKS", work: workData})          
+                }
+            })        
+    }
+}
