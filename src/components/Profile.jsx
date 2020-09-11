@@ -19,7 +19,7 @@ class Profile extends Component {
         console.log(this.props)
     }
 
-    render() {
+    render() { 
         return(
             <Grid container className={this.props.classes.container}>
       
@@ -57,7 +57,7 @@ class Profile extends Component {
     workRows() {
         let rows = []
         let row = []
-        this.state.works.forEach((work) => {
+        this.state.works.reverse().forEach((work) => {
           row.push(work)
           if (row.length === this.state.number_columns) {
             rows.push(row)
