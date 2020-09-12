@@ -1,9 +1,13 @@
 import React from 'react';
-import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Box, Grid, Typography} from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import {Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Box, Grid, Typography} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import Copyright from './Copyright'
+import {compose} from'recompose';
+import {connect} from 'react-redux';
+import {createUser} from '../actions/actions';
+import { DirectUpload } from 'activestorage';
+
+import Copyright from './Copyright';
 
 const styles = (theme) => ({
   root: {
@@ -36,8 +40,41 @@ const styles = (theme) => ({
 });
 
 
-class Home extends React.Component {
 
+
+class Home extends React.Component {
+  
+  state= {
+    name: '',
+    title: '',
+    bio: '',
+    email: '',
+    password: '',
+  }
+  
+  handleChange = (e) => {
+    if (e.target.name === 'avatar') {
+      this.setState({
+        [e.target.name]: e.target.files[0]
+      })
+    } else {
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+    }
+  }
+  
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.createUser(this.state, ()=> {
+      if(!this.props.user.error) {
+        this.props.history.push('/home')
+      }
+    })
+    this.setState({
+
+    })
+  }
   
   render() {
     const {classes} = this.props;
@@ -47,34 +84,49 @@ class Home extends React.Component {
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
         <Grid item xs={12} sm={8} md={5}>
           <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
             <Typography component="h1" variant="h5">
               Sign Up
             </Typography>
-            <form className={classes.form} noValidate>
-              
-            <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="name"
-                label="Name"
-                name="name"
-                autoFocus
-              />
+            <form className={classes.form} onSubmit={this.handleSubmit}>
+
+            <Grid container item>
+              <Grid item xs={12} md={6}>
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="name"
+                    label="Name"
+                    name="name"
+                    autoFocus
+                  />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="title"
+                    label="Title"
+                    name="title"
+                    placeholder="e.g Software Engineer"
+                    autoFocus
+                  />
+              </Grid>
+            </Grid> 
+            
+
 
             <TextField
                 variant="outlined"
                 margin="normal"
-                required
                 fullWidth
-                id="title"
-                label="Title"
-                name="title"
-                placeholder="e.g Software Engineer"
+                id="bio"
+                label="Bio"
+                name="bio"
+                placeholder="A little something about you.."
                 autoFocus
               />
               
@@ -137,5 +189,15 @@ class Home extends React.Component {
   }
 }
 
+const mapState = ({ user }) => {
+  return {
+      user
+  }
+}
 
-export default withStyles(styles)(Home)
+export default compose(
+  withStyles(styles, {
+      name: 'App',
+  }),
+  connect(mapState, {createUser}),
+)(Home);
