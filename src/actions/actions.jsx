@@ -1,4 +1,5 @@
-//----------------------------------------------------------LOGIN_USER
+//---------------------------------------------------------------------
+//-----------------------------------------------------------LOGIN_USER
 export const loginUser = (payload, callback) => async(dispatch) => {
     const response = await fetch("http://localhost:3000/login", {
             method: "POST",
@@ -18,8 +19,8 @@ export const loginUser = (payload, callback) => async(dispatch) => {
         callback()
 };
 
-
-//----------------------------------------------------------GET_USER (CHECKS FOR CURRENT USER)
+//---------------------------------------------------------------------
+//-----------------------------------GET_USER (CHECKS FOR CURRENT USER)
 export const getUser = () => { 
     return dispatch => {   
         return fetch("http://localhost:3000/currentUser", {  
@@ -31,7 +32,7 @@ export const getUser = () => {
             .then(res => res.json())        
             .then(userData => {          
                 if (userData.error) {            
-                    alert(userData.error)          
+                    console.log(userData.error)          
                 } else {            
                      dispatch({type: "CURRENT_USER", user: userData})          
                 }
@@ -39,7 +40,7 @@ export const getUser = () => {
     }
 }
 
-
+//---------------------------------------------------------------------
 //----------------------------------------------------------LOGOUT_USER
 export const logoutUser = () => {
     return dispatch => {
@@ -58,41 +59,31 @@ export const logoutUser = () => {
     }
 }
 
-
+//---------------------------------------------------------------------
 //----------------------------------------------------------CREATE_USER
-// export const createUser = (newUser, callback) => {
-//     return (dispatch) => {
-//         return fetch("http://localhost:3000/users", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({
-//                 user: {
-//                     name: newUser.username,
-//                     email: newUser.email,
-//                     title: newUser.title,
-//                     password: newUser.password,
-//                 }
-//             })
-//         })
-//         .then(res => res.json())
-//         .then(userInfo => {
-//             if (userInfo.error) {
-//                 alert(userInfo.details)
-//             } else {
-//                 const authentication_token = userInfo.data.attributes.authentication_token;
-//                 localStorage.setItem('token', authentication_token);
-//                 dispatch({ type: "LOGIN_USER", payload: userInfo.data.attributes })
-//                 callback();
-//             }
-//         })
-//             .catch(console.log())
-//     };
-// };
+export const createUser = (payload, callback) => async(dispatch) => {
+    const res = await fetch("http://localhost:3000/users", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                user: payload
+                })
+        })
+        .then(res => res.json())
+            if (res.error) {
+                alert(res.error)
+            } 
+            dispatch({ type: "CREATE_USER", payload: res })
+            callback();
+            }
 
 
-//----------------------------------------------GET_USER_WORKS
+//---------------------------------------------------------------------
+//-------------------------------------------------------GET_USER_WORKS
 export const getWorks = () => { 
     return dispatch => {   
         return fetch("http://localhost:3000/works", {  
