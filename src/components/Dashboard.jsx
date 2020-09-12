@@ -1,6 +1,7 @@
 import React from 'react'
 //import { useHistory } from "react-router-dom";
 import {Avatar, Button, Grid, Typography} from '@material-ui/core';
+import {Link} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Copyright from './Copyright';
 
@@ -55,8 +56,8 @@ const DashBoard = (props) => {
             </Grid>
 
             <Grid container item>
-                <Button fullWidth variant="contained" className={classes.item}>Post New Work</Button>
-                <Button fullWidth variant="contained" className={classes.item}>Account</Button>
+                <Button fullWidth variant="contained" className={classes.item} component={Link} to="/upload">Post New Work</Button>
+                <Button fullWidth variant="contained" className={classes.item}component={Link} to="/account">Account</Button>
             </Grid>
 
             <Grid container item className={classes.bottomBtn}>
