@@ -8,6 +8,8 @@ import {connect} from 'react-redux';
 import Home from './components/Home';
 import About from './components/About';
 import Login from './components/Login';
+import Account from './components/Account';
+import UploadNewWork from './components/UploadNewWork';
 import FeedContainer from './containers/FeedContainer';
 import ProfileContainer from './containers/ProfileContainer';
 
@@ -88,6 +90,8 @@ class NavBar extends React.PureComponent {
                     <Switch>
                         <Route path="/home" exact component={FeedContainer} />
                         <Route path="/profile" exact component={ProfileContainer} />
+                        <Route path="/account" exact component={Account} />
+                        <Route path="/upload" exact component={UploadNewWork}/>
                         <Route path="/login" exact component={Login} />
                         <Route path="/about" exact component={About} />
                         <Route path="/" exact component={Home} />
