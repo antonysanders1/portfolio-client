@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import {compose} from'recompose';
 import {connect} from 'react-redux';
 import {createUser} from '../actions/actions';
-import { DirectUpload } from 'activestorage';
 
 import Copyright from './Copyright';
 
@@ -53,15 +52,15 @@ class Home extends React.Component {
   }
   
   handleChange = (e) => {
-    if (e.target.name === 'avatar') {
-      this.setState({
-        [e.target.name]: e.target.files[0]
-      })
-    } else {
+    // if (e.target.name === 'avatar') {
+    //   this.setState({
+    //     [e.target.name]: e.target.files[0]
+    //   })
+    // } else {
       this.setState({
         [e.target.name]: e.target.value
       })
-    }
+    // }
   }
   
   handleSubmit = (e) => {
@@ -91,7 +90,7 @@ class Home extends React.Component {
 
             <Grid container item>
               <Grid item xs={12} md={6}>
-                <TextField
+                <TextField onChange={this.handleChange}
                     variant="outlined"
                     margin="normal"
                     required
@@ -103,7 +102,7 @@ class Home extends React.Component {
                   />
               </Grid>
               <Grid item xs={12} md={6}>
-                <TextField
+                <TextField onChange={this.handleChange}
                     variant="outlined"
                     margin="normal"
                     required
@@ -119,7 +118,7 @@ class Home extends React.Component {
             
 
 
-            <TextField
+            <TextField onChange={this.handleChange}
                 variant="outlined"
                 margin="normal"
                 fullWidth
@@ -130,7 +129,7 @@ class Home extends React.Component {
                 autoFocus
               />
               
-              <TextField
+              <TextField onChange={this.handleChange}
                 variant="outlined"
                 margin="normal"
                 required
@@ -141,7 +140,7 @@ class Home extends React.Component {
                 autoComplete="email"
                 autoFocus
               />
-              <TextField
+              <TextField onChange={this.handleChange}
                 variant="outlined"
                 margin="normal"
                 required

@@ -13,7 +13,7 @@ export const loginUser = (payload, callback) => async(dispatch) => {
         })
         .then(res => res.json())
         if (response.error) {
-            alert(response.error)
+            console.log(response.error)
         }
         dispatch({type: 'LOGIN_USER', payload: response})
         callback()
@@ -75,7 +75,7 @@ export const createUser = (payload, callback) => async(dispatch) => {
         })
         .then(res => res.json())
             if (res.error) {
-                alert(res.error)
+                console.log(res.error)
             } 
             dispatch({ type: "CREATE_USER", payload: res })
             callback();
@@ -100,5 +100,23 @@ export const getWorks = () => {
                      dispatch({type: "SHOW_WORKS", work: workData})          
                 }
             })        
+    }
+}
+
+//---------------------------------------------------------------------
+//----------------------------------------------------------CREATE_WORK
+export const createWork = (payload) => {
+    return dispatch => {
+     fetch(`http://localhost:3000/works`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            },
+            body: JSON.stringify({work: payload})
+        })
+        .then(res => res.json())
+        .then(data => dispatch({type: 'CREATE_WORK', work: data}))
     }
 }

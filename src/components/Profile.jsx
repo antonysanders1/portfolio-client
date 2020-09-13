@@ -37,13 +37,13 @@ class Profile extends Component {
               {this.workRows().map((workRow, rowIndex) =>
                 <Grid container item key={`work_row_${rowIndex}`} className="row">
                   {workRow.map((work, columnIndex) =>
-                    <Grid item xs={4} key={`work_row_${rowIndex}_col_${columnIndex}`} spacing={1} direction="column" 
+                    <Grid item xs={4} key={`work_row_${rowIndex}_col_${columnIndex}`} 
                     component={Paper} elevation={1} className={this.props.classes.workContainer}>
-                        <Typography variant="h6" bold={true}>{work.title}</Typography>
+                        <Typography variant="h6">{work.title}</Typography>
                         <Grid container item xs={12} className={this.props.classes.imgContainer}>
                           <img alt={work.title} src={`http://localhost:3000${work.image}`} className={this.props.classes.img} />
                         </Grid>
-                        <Grid continer item xs={12} className={this.props.classes.descContainer}>
+                        <Grid container item xs={12} className={this.props.classes.descContainer}>
                           <Typography>{work.description}</Typography>
                         </Grid>
                     </Grid>

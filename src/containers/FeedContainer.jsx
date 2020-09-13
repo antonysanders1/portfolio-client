@@ -53,11 +53,11 @@ const styles = (theme) => ({
     height: '100%'  
   },
   workContainer: {
-    height: '70vh',
+    minHeight: '70vh',
     padding: theme.spacing(1),
-    marginBottom: '30px',
+    marginBottom: '50px',
     // overflow: 'hidden',
-    flexGrow: 1,
+    //flexGrow: 1,
   },
   imgContainer: {
     height: '80%',

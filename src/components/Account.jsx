@@ -1,9 +1,8 @@
 import React from 'react'
-import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Box, Grid, Typography} from '@material-ui/core';
+import {Avatar, Button, CssBaseline, TextField, Box, Grid, Typography} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import {compose} from'recompose';
-import {createUser} from '../actions/actions';
 import {connect} from 'react-redux';
 
 import { DirectUpload } from 'activestorage';
@@ -63,6 +62,7 @@ class Account extends React.PureComponent {
           this.setState({
             [e.target.name]: e.target.files[0]
           })
+          console.log(e.target.files[0])
         } else {
           this.setState({
             [e.target.name]: e.target.value
@@ -72,15 +72,33 @@ class Account extends React.PureComponent {
       
       handleSubmit = (e) => {
         e.preventDefault()
-        this.props.createUser(this.state, ()=> {
-          if(!this.props.user.error) {
-            this.props.history.push('/home')
-          }
-        })
-        this.setState({
-    
-        })
+        console.log(this.props)
+        this.uploadFile(this.state.avatar, this.props.user);
+         
+        
       }
+
+      uploadFile = (file, user) => {
+          const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_uploads')
+          upload.create((error, blob) => {
+            if (error) {
+              alert(error)
+            } else {
+              fetch(`http://localhost:3000/users/${user.id}`, {
+                method: 'PUT',
+                credentials: "include",
+                headers: {
+                  "Content-Type": "application/json",
+                  'Accept': 'application/json'
+                },
+                body: JSON.stringify({avatar: blob.signed_id})
+              })
+              .then(res => res.json())
+              .then(data => console.log(data))
+              .then(window.location.reload())
+            }
+          })
+        }
       
       render() {
         const {classes} = this.props;
@@ -100,13 +118,13 @@ class Account extends React.PureComponent {
                 <Typography component='h1' variant='h6'>Email: {this.props.user.email}</Typography>
                 <Typography component='h1' variant='body1'>About: {this.props.user.bio}</Typography>
                 <br/>
-                <hr fullWidth className={classes.line} />
+                <hr className={classes.line} />
                 <br/>
                 <Typography component="h1" variant="h5">
                   Edit Account Info:
                 </Typography>
                 <br/>
-                <form className={classes.form}>
+                <form className={classes.form} onSubmit={this.handleSubmit} >
                   <input style={{display: 'none'}}
                     type="file"
                     id="avatar"
@@ -131,7 +149,7 @@ class Account extends React.PureComponent {
                 <br/>
                 <hr className={classes.line} />
                 <br/>
-                <form className={classes.form} onSubmit={this.handleSubmit}>
+                <form className={classes.form} >
     
                 <Grid container item>
                   <Grid item xs={12} md={6}>
@@ -143,8 +161,8 @@ class Account extends React.PureComponent {
                         id="name"
                         label="Name"
                         name="name"
-                        value={this.props.user.name}
-                        autoFocus
+                        //value={this.props.user.name}
+                        // autoFocus
                       />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -156,8 +174,8 @@ class Account extends React.PureComponent {
                         id="title"
                         label="Title"
                         name="title"
-                        value={this.props.user.title}
-                        autoFocus
+                       //value={this.props.user.title}
+                        // autoFocus
                       />
                   </Grid>
                 </Grid> 
@@ -171,8 +189,8 @@ class Account extends React.PureComponent {
                     id="bio"
                     label="Bio"
                     name="bio"
-                    value={this.props.user.bio}
-                    autoFocus
+                    //value={this.props.user.bio}
+                    // autoFocus
                   />
                   
                   <TextField
@@ -184,8 +202,8 @@ class Account extends React.PureComponent {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    value={this.props.user.email}
-                    autoFocus
+                    //value={this.props.user.email}
+                    // autoFocus
                   />
                   {/* <TextField
                     variant="outlined"

@@ -3,8 +3,8 @@ export default (state = {}, action) => {
         case 'SHOW_WORKS':
             return (action.work)
 
-        // case 'LOGIN_USER':
-        //     return (action.payload)
+         case 'CREATE_WORK':
+             return (action.work)
 
         // case 'LOGOUT_USER':
         //     return {}

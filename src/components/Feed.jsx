@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, CssBaseline, Avatar, Typography } from '@material-ui/core'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+//import FavoriteIcon from '@material-ui/icons/Favorite';
 
 class Feed extends Component {
 render() {
@@ -21,10 +21,10 @@ render() {
 
                                 <Grid container item xs={9} lg={10} direction="column" className={this.props.classes.header}>
                                     <Grid item xs={12}>
-                                        <Typography>{work.user.name}</Typography>
+                                        <Typography variant="h6">{work.user.name}</Typography>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <Typography>{work.title}</Typography>
+                                        <Typography variant="subtitle2">{work.title}</Typography>
                                     </Grid>
                                 </Grid>
 
@@ -32,6 +32,7 @@ render() {
                                     <img src={`http://localhost:3000${work.image}`} alt={work.title} className={this.props.classes.img}/>
                                 </Grid>
                                 <Grid container>
+
                                 <Grid item xs={1}>
                                         <Avatar className={this.props.classes.unclickedBtn}>
                                             <FavoriteBorderIcon/>
@@ -40,8 +41,12 @@ render() {
                                     <Grid item xs={11}>
                                         <Typography>0 Likes</Typography>
                                     </Grid>
-
                                 </Grid>
+
+                                <Grid container item xs={12}>
+                                    <Typography variant="caption text">{work.description}</Typography>
+                                </Grid>
+
                             </Grid>
 
                         </Grid>
