@@ -70,7 +70,7 @@ class NavBar extends React.PureComponent {
 
                             <Grid item xs={2} sm={2} md={2} lg={1}>
                                 {
-                                  this.props.user.name ? <Button fullWidth color='primary' component={Link} to="/profile">Profile</Button> :
+                                  this.props.user.name ? <Button fullWidth color='primary' component={Link} to={`/${this.props.user.name}`}>Profile</Button> :
                                   <Button fullWidth color='primary' component={Link} to="/about">About</Button>
                                 }
                             </Grid>
@@ -86,7 +86,7 @@ class NavBar extends React.PureComponent {
                     </Grid>
                     <Switch>
                         <Route path="/home" exact component={FeedContainer} />
-                        <Route path="/profile" exact component={ProfileContainer} />
+                        <Route path={`/${this.props.user.name}`} exact component={ProfileContainer} />
                         <Route path="/account" exact component={Account} />
                         <Route path="/upload" exact component={UploadNewWork}/>
                         <Route path="/login" exact component={Login} />
