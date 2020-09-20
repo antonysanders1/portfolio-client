@@ -4,8 +4,6 @@ import {compose} from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
 import {Grid, CssBaseline, Typography} from '@material-ui/core';
 
-//import {getUser, logoutUser} from '../actions/actions';
-
 import DashBoard from '../components/Dashboard'
 import Profile from '../components/Profile'
 
@@ -101,7 +99,7 @@ class ProfileContainer extends React.Component {
                   </Grid>
                   <Profile
                   classes ={classes}
-                   user={this.props.user}
+                  //  user={this.props.user}
                    works={this.props.user.works}
                    />
                 </Grid>
