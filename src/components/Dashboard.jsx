@@ -56,8 +56,8 @@ const DashBoard = (props) => {
             </Grid>
 
             <Grid container item>
-                <Button fullWidth variant="contained" className={classes.item} component={Link} to="/upload">Post New Work</Button>
-                <Button fullWidth variant="contained" className={classes.item}component={Link} to="/account">Account</Button>
+                <Button fullWidth variant="contained" color="primary" className={classes.item} component={Link} to="/upload">Post New Work</Button>
+                <Button fullWidth variant="contained" color="primary" className={classes.item}component={Link} to="/account">Account</Button>
             </Grid>
 
             <Grid container item className={classes.bottomBtn}>
