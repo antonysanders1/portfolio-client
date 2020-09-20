@@ -1,13 +1,9 @@
 import React from 'react';
 
-class About extends React.Component {
-  render(){
-    return (
-      <div>
-        Hello World from the About page!
-      </div>
-    );
-  }
+export default function About() {
+  return (
+    <div>
+      Hello from the About Page!
+    </div>
+  );
 }
-
-export default About;
