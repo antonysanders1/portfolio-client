@@ -5,12 +5,7 @@ export default (state = {}, action) => {
 
          case 'CREATE_WORK':
              return (action.work)
-
-        // case 'LOGOUT_USER':
-        //     return {}
-
-        // case 'CURRENT_USER':
-        //     return (action.user)
+             
         default:
             return state;
     };
