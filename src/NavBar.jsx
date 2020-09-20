@@ -13,7 +13,7 @@ import UploadNewWork from './components/UploadNewWork';
 import FeedContainer from './containers/FeedContainer';
 import ProfileContainer from './containers/ProfileContainer';
 
-import {logoutUser} from './actions/actions'
+import {getUser, logoutUser} from './actions/actions'
 
 const styles = () => ({
     navLogo: {
@@ -33,10 +33,7 @@ const styles = () => ({
 
 class NavBar extends React.PureComponent {
     
-    constructor(props) {
-    super(props);
-    this.state = {};
-  }
+    state = {};
 
   handleClick = () => {
    this.props.logoutUser();
@@ -44,7 +41,7 @@ class NavBar extends React.PureComponent {
   }
 
     componentDidMount() {
-        console.log(this.props)
+        this.props.getUser()
     }
 
   render(){
@@ -110,4 +107,4 @@ const mapState = ({user}) => {
 
 export default compose(
   withStyles(styles, {name: 'App',}),
-  connect(mapState, {logoutUser}))(NavBar);
+  connect(mapState, {getUser,logoutUser}))(NavBar);
