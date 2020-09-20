@@ -15,8 +15,10 @@ class App extends React.PureComponent {
   render(){
     return (
       <div className="App">
-        <NavBar user={this.props.user}
-        works={this.props.works}/>
+        <NavBar 
+          user={this.props.user}
+          works={this.props.works}
+        />
       </div>
     ); 
   }
