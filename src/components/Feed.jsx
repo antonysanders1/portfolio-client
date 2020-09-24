@@ -43,7 +43,7 @@ const Feed = (props) => {
                                 </Grid>
 
                                 <Grid container item xs={12}>
-                                    <Typography variant="caption text">{work.description}</Typography>
+                                    <Typography variant="caption">{work.description}</Typography>
                                 </Grid>
 
                             </Grid>
