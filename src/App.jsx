@@ -1,8 +1,16 @@
 import React from 'react';
 import NavBar from './NavBar';
-//import { ThemeProvider } from '@material-ui/core';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getUser, getWorks} from './actions/actions';
+
+import Home from './components/Home';
+import About from './components/About';
+import Login from './components/Login';
+import Account from './components/Account';
+import UploadNewWork from './components/UploadNewWork';
+import FeedContainer from './containers/FeedContainer';
+import ProfileContainer from './containers/ProfileContainer';
 
 
 class App extends React.PureComponent {
@@ -14,12 +22,23 @@ class App extends React.PureComponent {
 
   render(){
     return (
-      <div className="App">
-        <NavBar 
-          user={this.props.user}
-          works={this.props.works}
-        />
-      </div>
+      <Router>
+        <div className="App">
+          <NavBar 
+            user={this.props.user}
+            works={this.props.works}
+          />
+        </div>
+        <Switch>
+            <Route path="/home" exact component={FeedContainer} />
+            <Route path={`/${this.props.user.name}`} exact component={ProfileContainer} />
+            <Route path="/account" exact component={Account} />
+            <Route path="/upload" exact component={UploadNewWork}/>
+            <Route path="/login" exact component={Login} />
+            <Route path="/about" exact component={About} />
+            <Route path="/" exact component={Home} />
+        </Switch>
+      </Router>
     ); 
   }
 }
