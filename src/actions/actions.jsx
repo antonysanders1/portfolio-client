@@ -79,7 +79,35 @@ export const createUser = (payload, callback) => async(dispatch) => {
             } 
             dispatch({ type: "CREATE_USER", payload: res })
             callback();
+}
+
+
+//---------------------------------------------------------------------
+//----------------------------------------------------------UPDATE_USER
+export const updateUser = (user) => {
+    console.log(user.user.id)
+    return dispatch => {
+     return fetch(`http://localhost:3000/users/${user.user.id}`, {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            },
+            body: JSON.stringify({
+                user: user
+                })
+        })
+        .then(res => res.json())
+        .then(userData => {          
+            if (userData.error) {            
+                console.log(userData.error)          
+            } else {            
+                 dispatch({type: "UPDATE_USER", user: userData})          
             }
+        })
+    }
+}
 
 
 //---------------------------------------------------------------------
