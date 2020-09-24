@@ -3,7 +3,7 @@ import { Grid, CssBaseline, Avatar, Typography } from '@material-ui/core'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 //import FavoriteIcon from '@material-ui/icons/Favorite';
 
-export default function Feed(props){
+const Feed = (props) => {
         return (
             <Grid container>
                 {props.works.map((work) => 
@@ -56,6 +56,8 @@ export default function Feed(props){
             </Grid>
         )   
     }
+
+export default Feed
 
 //--------------------------------------------------------------------------------- 
 //------------------------------------------------------ Class Component Equivelant
