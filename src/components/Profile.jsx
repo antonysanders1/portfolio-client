@@ -28,7 +28,7 @@ export default function Profile(props) {
                         <img alt={work.title} src={`http://localhost:3000${work.image}`} className={props.classes.img} />
                       </Grid>
                       <Grid container item xs={12} className={props.classes.descContainer}>
-                        <Typography>{work.description}</Typography>
+                        <Typography variant="caption">{work.description}</Typography>
                       </Grid>
                   </Grid>
                 )}
