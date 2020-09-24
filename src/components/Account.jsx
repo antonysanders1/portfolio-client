@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {compose} from'recompose';
 import {connect} from 'react-redux';
 
+import {updateUser} from '../actions/actions'
 import { DirectUpload } from 'activestorage';
 
 import Copyright from './Copyright';
@@ -70,12 +71,18 @@ class Account extends React.PureComponent {
         }
       }
       
-      handleSubmit = (e) => {
+      handleUpdateImg = (e) => {
         e.preventDefault()
         console.log(this.props)
-        this.uploadFile(this.state.avatar, this.props.user);
-         
-        
+        this.uploadFile(this.state.avatar, this.props.user);  
+      }
+
+      handleUpdateInfo = (e) => {
+        e.preventDefault()
+        this.props.updateUser(this.state)
+        this.setState({
+          
+        })  
       }
 
       uploadFile = (file, user) => {
@@ -124,7 +131,7 @@ class Account extends React.PureComponent {
                   Edit Account Info:
                 </Typography>
                 <br/>
-                <form className={classes.form} onSubmit={this.handleSubmit} >
+                <form className={classes.form} onSubmit={this.handleUpdateImg} >
                   <input style={{display: 'none'}}
                     type="file"
                     id="avatar"
@@ -149,11 +156,11 @@ class Account extends React.PureComponent {
                 <br/>
                 <hr className={classes.line} />
                 <br/>
-                <form className={classes.form} >
+                <form className={classes.form} onSubmit={this.handleUpdateInfo} >
     
                 <Grid container item>
                   <Grid item xs={12} md={6}>
-                    <TextField
+                    <TextField onChange={this.handleChange}
                         multiline
                         variant="outlined"
                         margin="normal"
@@ -161,12 +168,11 @@ class Account extends React.PureComponent {
                         id="name"
                         label="Name"
                         name="name"
-                        //value={this.props.user.name}
-                        // autoFocus
+                        defaultValue={this.props.user.name}
                       />
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <TextField
+                    <TextField onChange={this.handleChange}
                         variant="outlined"
                         margin="normal"
                         required
@@ -174,26 +180,25 @@ class Account extends React.PureComponent {
                         id="title"
                         label="Title"
                         name="title"
-                       //value={this.props.user.title}
-                        // autoFocus
+                       defaultValue={this.props.user.title}
                       />
                   </Grid>
                 </Grid> 
                 
     
     
-                <TextField
+                <TextField onChange={this.handleChange}
+                    multiline
                     variant="outlined"
                     margin="normal"
                     fullWidth
                     id="bio"
                     label="Bio"
                     name="bio"
-                    //value={this.props.user.bio}
-                    // autoFocus
+                    defaultValue={this.props.user.bio}
                   />
                   
-                  <TextField
+                  <TextField onChange={this.handleChange}
                     variant="outlined"
                     margin="normal"
                     required
@@ -202,20 +207,8 @@ class Account extends React.PureComponent {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    //value={this.props.user.email}
-                    // autoFocus
+                    defaultValue={this.props.user.email}
                   />
-                  {/* <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                  /> */}
                   
                   <Button
                     type="submit"
@@ -250,5 +243,5 @@ export default compose(
   withStyles(styles, {
       name: 'App',
   }),
-  connect(mapState),
+  connect(mapState, {updateUser}),
 )(Account);
