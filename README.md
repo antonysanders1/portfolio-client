@@ -6,7 +6,6 @@
 Portfoli-Yo! is an app where users have the ability to create a digital portfolio by uploading and sharing their individual works with the community. [DEMO](https://www.youtube.com/watch?v=DgDs7AbwzzI)
 
 ## General Info
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Click the link below to reference the Backend API! 
 [Reference to Backend - Rails API](https://github.com/antonysanders1/portfoliyo-backend-api)
